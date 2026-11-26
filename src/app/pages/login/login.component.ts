@@ -6,7 +6,7 @@ import { Login } from '../../core/models/Login';
 import { MaterialModule } from '../../shared/material.module';
 import { UserService } from '../../core/service/user.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +18,7 @@ import { RouterLink } from '@angular/router';
 
 export class LoginComponent implements OnInit {
     private userService = inject(UserService);
+    private router = inject(Router);
   private formBuilder = inject(FormBuilder);
   private destroyRef = inject(DestroyRef);
   loginForm: FormGroup = new FormGroup({});
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     this.submitted = true;
     if (this.loginForm.invalid) {
+      alert("User not found in database. Please check your login and password.");
       return;
     }
     const loginUser: Login = {
@@ -50,7 +52,7 @@ export class LoginComponent implements OnInit {
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe(
       () => {
-        alert('SUCCESS!! :-)');
+        this.router.navigate(['/dashboard']);
       },
     );
   }
