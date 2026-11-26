@@ -8,6 +8,12 @@
     Connectez-vous pour accéder à votre bibliothèque.
   </p>
 
+  @if (errorMessage) {
+    <div class="error-message" role="alert">
+      {{ errorMessage }}
+    </div>
+  }
+
   <div class="card m-3">
     <h5 class="card-header">Connexion</h5>
 

@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   loginForm: FormGroup = new FormGroup({});
   submitted: boolean = false;
+  errorMessage: string = '';
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group(
@@ -40,8 +41,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
+    this.errorMessage="";
     if (this.loginForm.invalid) {
-      alert("User not found in database. Please check your login and password.");
+      //gestion de l'erreur via un élément HTML distinctif
+      this.errorMessage="Merci de remplir le formulaire de connexion";
       return;
     }
     const loginUser: Login = {
@@ -52,7 +55,7 @@ export class LoginComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (token: string) => {
-          // garde le username & le token pour le faire apparaitre dans le dashboard
+          // garde le username & le token pour le faire apparaitre
           sessionStorage.setItem('username', loginUser.login);
           sessionStorage.setItem('token', token);
 
@@ -61,7 +64,7 @@ export class LoginComponent implements OnInit {
         },
         error: (error: unknown) => {
           console.error('Login request failed:', error);
-          alert('Login failed. Check your credentials and that the backend is running.');
+          this.errorMessage = 'Connexion échouée. Vérifiez vos identifiants et réessayez.';
         },
       });
   }
