@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
         },
         error: (error: unknown) => {
           console.error('Login request failed:', error);
-          this.errorMessage = 'Connexion échouée. Vérifiez vos identifiants et réessayez.';
+          this.errorMessage = 'Connexion échouée. Veuillez vérifier vos identifiants.';
         },
       });
   }

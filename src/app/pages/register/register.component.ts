@@ -6,6 +6,7 @@ import { UserService } from '../../core/service/user.service';
 import { Register } from '../../core/models/Register';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, RouterLink } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -21,6 +22,7 @@ export class RegisterComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   registerForm: FormGroup = new FormGroup({});
   submitted: boolean = false;
+  errorMessage: string = '';
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group(
@@ -50,11 +52,27 @@ export class RegisterComponent implements OnInit {
     };
     this.userService.register(registerUser)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(
-      () => {
-        this.router.navigate(['/login']);
-      },
-    );
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/login']);
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error('Registration failed:', error);
+
+          if (error.status === 409) {
+            this.errorMessage = 'Erreur: ' + error.status + ' - Ce login est déjà utilisé.';
+          } else if (error.status === 429) {
+            this.errorMessage = 'Erreur: ' + error.status + ' - Trop de requêtes. Veuillez réessayer plus tard.';
+          } else if (error.status === 400) {
+            this.errorMessage = 'Erreur: ' + error.status + ' - Données invalides. Veuillez vérifier le formulaire.';
+          } else if (error.status === 500) {
+            this.errorMessage = 'Erreur serveur. Veuillez réessayer plus tard.';
+          } 
+          else {
+            this.errorMessage = 'L’inscription a échoué. Veuillez réessayer.';
+          }
+        },
+      });
   }
 
   onReset(): void {
