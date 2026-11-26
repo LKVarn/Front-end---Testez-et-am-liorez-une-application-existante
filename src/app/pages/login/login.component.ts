@@ -17,8 +17,8 @@ import { Router, RouterLink } from '@angular/router';
 })
 
 export class LoginComponent implements OnInit {
-    private userService = inject(UserService);
-    private router = inject(Router);
+  private userService = inject(UserService);
+  private router = inject(Router);
   private formBuilder = inject(FormBuilder);
   private destroyRef = inject(DestroyRef);
   loginForm: FormGroup = new FormGroup({});
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  get form() { 
+  get form() {
     return this.loginForm.controls;
   }
 
@@ -49,15 +49,24 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get('password')?.value
     };
     this.userService.login(loginUser)
-    .pipe(takeUntilDestroyed(this.destroyRef))
-    .subscribe(
-      () => {
-        this.router.navigate(['/dashboard']);
-      },
-    );
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (token: string) => {
+          // garde le username & le token pour le faire apparaitre dans le dashboard
+          sessionStorage.setItem('username', loginUser.login);
+          sessionStorage.setItem('token', token);
+
+          // swith to dashboard page
+          this.router.navigate(['/dashboard']);
+        },
+        error: (error: unknown) => {
+          console.error('Login request failed:', error);
+          alert('Login failed. Check your credentials and that the backend is running.');
+        },
+      });
   }
 
-    onReset(): void {
+  onReset(): void {
     this.submitted = false;
     this.loginForm.reset();
   }

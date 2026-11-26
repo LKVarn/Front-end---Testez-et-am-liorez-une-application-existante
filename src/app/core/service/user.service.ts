@@ -13,7 +13,8 @@ export class UserService {
   register(user: Register): Observable<Object> {
     return this.httpClient.post('/api/register', user);
   }
-  login(user: Login): Observable<Object> {
-    return this.httpClient.post('/api/login', user);
+  login(user: Login): Observable<string> {
+    //convertis le JWT en json
+    return this.httpClient.post('/api/login', user, { responseType: 'text' });
   }
 }

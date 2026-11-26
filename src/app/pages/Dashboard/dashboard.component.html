@@ -7,9 +7,10 @@
 <h1 class="title">EtuBlibliothèque</h1>
 
 <div class = "ConnectPopUp">
-  <h3 class = "popUpTitle">Bienvenue</h3>
-  <p class = "introSentence">Pour accéder au site internet, veuillez vous connectez</p>
-  <button class = "introPopUpButton" routerLink="login">Se connecter</button>
-  <p class = "introSentence">Pas de compte ? Veuillez vous enregistrer</p>
-  <button class = "introPopUpButton" routerLink="register">Créer un compte</button>
+  <h3 class = "popUpTitle">Dashboard</h3>
+  <p class = "introSentence">Bienvenue sur votre espace personnel</p>
+  <p class = "introSentence">Votre username est :</p>
+  <p class = "token">{{ username }}</p>
+  <p class = "introSentence">Votre token d'authentification est :</p>
+  <p class = "token">{{ token }}</p>
 </div>

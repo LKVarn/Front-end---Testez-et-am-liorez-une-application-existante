@@ -8,7 +8,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-dashboard',
   standalone: true,
   imports: [
     RouterLink
@@ -21,5 +21,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  //récupère le username et le token pour les afficher dans le dashboard
+  username = sessionStorage.getItem('username') ?? '';
+token = sessionStorage.getItem('token') ?? '';
 
 }

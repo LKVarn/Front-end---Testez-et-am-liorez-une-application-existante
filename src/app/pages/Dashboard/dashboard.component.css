@@ -2,4 +2,6 @@
     font-family: 'Gowun Batang', serif;
     font-weight: bold;
     color: #ff6e6e;
+    max-width: 100%;
+    overflow-wrap: anywhere;
 }
