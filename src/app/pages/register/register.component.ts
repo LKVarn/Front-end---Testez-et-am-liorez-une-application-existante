@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
           } else if (error.status === 429) {
             this.errorMessage = 'Erreur: ' + error.status + ' - Trop de requêtes. Veuillez réessayer plus tard.';
           } else if (error.status === 400) {
-            this.errorMessage = 'Erreur: ' + error.status + ' - Données invalides. Veuillez vérifier le formulaire.';
+            this.errorMessage = 'Erreur: ' + error.status + ' - Données invalides, l\'utilisateurest peut être déja connu. Veuillez vérifier le formulaire.';
           } else if (error.status === 500) {
             this.errorMessage = 'Erreur: ' + error.status + ' - Erreur serveur. Veuillez réessayer plus tard.';
           } 
