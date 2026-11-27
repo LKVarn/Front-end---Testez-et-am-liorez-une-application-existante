@@ -24,7 +24,7 @@ export const routes: Routes = [
     component: DashboardComponent
   },
   {
-    path: 'user-list',
+    path: 'dashboard/userList',
     component: userListComponent
   }
 

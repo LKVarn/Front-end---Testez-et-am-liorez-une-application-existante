@@ -1,0 +1,79 @@
+.user-list-container {
+  width: min(100% - 32px, 1000px);
+  margin: 30px auto 48px;
+  overflow-x: auto;
+  border: 2px solid #BB96F5;
+  border-radius: 20px;
+  background-color: #FFFFFF;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.55);
+}
+
+.error-message {
+  width: min(100% - 32px, 1000px);
+  margin: 0 auto 20px;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+.user-list-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  color: #211D29;
+  text-align: center;
+}
+
+.user-list-table th,
+.user-list-table td {
+  padding: 16px 22px;
+  border-bottom: 1px solid rgba(33, 29, 41, 0.12);
+}
+
+.user-list-table th {
+  background-color: #BB96F5;
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.user-list-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.user-list-table tbody tr:hover {
+  background-color: rgba(187, 150, 245, 0.14);
+}
+
+.user-list-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 600px) {
+  .user-list-container {
+    width: calc(100% - 24px);
+    margin-top: 20px;
+  }
+
+  .user-list-table th,
+  .user-list-table td {
+    padding: 13px 16px;
+  }
+}
+
+:host > button.btnaction {
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.btnaction {
+  background-color: #BB96F5;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 16px;
+  margin: 4px 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
