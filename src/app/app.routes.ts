@@ -4,6 +4,7 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './pages/login/login.component';
 import {HomeComponent} from './pages/home/home.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
+import { userListComponent } from './pages/userList/userList.component';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,10 @@ export const routes: Routes = [
     {
     path: 'dashboard',
     component: DashboardComponent
+  },
+  {
+    path: 'user-list',
+    component: userListComponent
   }
 
 ];
