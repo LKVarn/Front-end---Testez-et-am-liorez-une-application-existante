@@ -97,10 +97,14 @@ body {
     border-radius: 35px;
 
     width: 85%;
-    height: 58px;
+    min-height: 58px;
+    height: auto;
+    padding: 8px 16px;
 
     font-family: 'Gowun Batang', serif;
-    font-size: 30px;
+    font-size: clamp(14px, 4vw, 20px);
+    line-height: 1.2;
+    white-space: normal;
 
     cursor: pointer;
     margin-bottom: 32px;

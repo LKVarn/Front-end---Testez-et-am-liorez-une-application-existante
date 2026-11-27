@@ -19,7 +19,7 @@ export const routes: Routes = [
     component: LoginComponent
   },
     {
-    path: 'dahsboard',
+    path: 'dashboard',
     component: DashboardComponent
   }
 
