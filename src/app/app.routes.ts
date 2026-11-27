@@ -6,6 +6,7 @@ import {HomeComponent} from './pages/home/home.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import { userListComponent } from './pages/userList/userList.component';
 import { CreateStudentComponent } from './pages/createStudent/createStudent.component';
+import { ModifyStudentComponent } from './pages/ModifyStudent/modifyStudent';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,10 @@ export const routes: Routes = [
   {
     path: 'dashboard/userList/create',
     component: CreateStudentComponent
+  },
+  {
+    path: 'dashboard/userList/ModifyStudent/:id',
+    component: ModifyStudentComponent
   }
 
 ];

@@ -31,7 +31,7 @@
         <td>{{ student.firstName }}</td>
         <td>{{ student.section }}</td>
         <td>{{ student.firstVisit | date: 'dd/MM/yyyy HH:mm' }}</td>
-        <td><button class="btnaction">Modifier</button>
+        <td><button class="btnaction" [routerLink]="['/dashboard/userList/ModifyStudent', student.id]">Modifier</button>
         <button class="btnaction">Supprimer</button>
         <button class="btnaction">Détails</button></td>
       </tr>

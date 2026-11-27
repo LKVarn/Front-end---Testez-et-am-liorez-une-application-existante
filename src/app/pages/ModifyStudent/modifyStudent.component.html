@@ -1,0 +1,77 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+</head>
+
+<h1 class="title">EtuBlibliothèque</h1>
+
+<div class="student-form-container">
+  <h2>Modifier un étudiant</h2>
+
+  @if (errorMessage) {
+    <div class="error-message" role="alert">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <form [formGroup]="modifyStudentForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstName">Prénom</label>
+      <input
+        id="firstName"
+        type="text"
+        formControlName="firstName"
+        [ngClass]="{ 'is-invalid': submitted && form['firstName'].errors }"
+      />
+      @if (submitted && form['firstName'].errors) {
+        <div class="invalid-feedback">
+          @if (form['firstName'].errors?.['required']) {
+            <div>Le prénom est obligatoire.</div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Nom</label>
+      <input
+        id="lastName"
+        type="text"
+        formControlName="lastName"
+        [ngClass]="{ 'is-invalid': submitted && form['lastName'].errors }"
+      />
+      @if (submitted && form['lastName'].errors) {
+        <div class="invalid-feedback">
+          @if (form['lastName'].errors?.['required']) {
+            <div>Le nom est obligatoire.</div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="section">Section</label>
+      <input
+        id="section"
+        type="text"
+        formControlName="section"
+        [ngClass]="{ 'is-invalid': submitted && form['section'].errors }"
+      />
+      @if (submitted && form['section'].errors) {
+        <div class="invalid-feedback">
+          @if (form['section'].errors?.['required']) {
+            <div>La section est obligatoire.</div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-actions">
+      <button class="form-button" type="submit">Confirmer les modifications</button>
+      <button class="form-button form-button-secondary" type="button" (click)="onCancel()">
+        Retour à la liste des étudiants
+      </button>
+    </div>
+  </form>
+</div>
